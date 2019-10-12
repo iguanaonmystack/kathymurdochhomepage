@@ -1,14 +1,14 @@
 import setuptools
 
 with open('README.md') as f:
-    long_description = fh.read()
+    long_description = f.read()
 
 with open('kathymurdochhomepage/release.py') as f:
     # includes version
     exec(f.read())
 
 setuptools.setup(
-    name="example-pkg-your-username",
+    name="kathymurdochhomepage",
     version=version,
     author="Kathy Murdoch",
     author_email="kathy@nivan.net",
@@ -17,6 +17,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/iguanaonmystack/kathymurdochhomepage",
     packages=setuptools.find_packages(),
+    install_requires=[
+       'Flask',
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
