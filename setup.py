@@ -19,6 +19,8 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
        'Flask',
+       'Flask-Genshi',# currently needs to be a branch eg https://github.com/vthriller/flask-genshi
+       'Genshi==0.8', # could we have a release please Edgewall?
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
