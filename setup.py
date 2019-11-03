@@ -18,14 +18,17 @@ setuptools.setup(
     url="https://github.com/iguanaonmystack/kathymurdochhomepage",
     packages=setuptools.find_packages(),
     install_requires=[
-       'Flask',
-       'Flask-Genshi',# currently needs to be a branch eg https://github.com/vthriller/flask-genshi
-       'Genshi==0.8', # could we have a release please Edgewall?
+        'Flask',
+        'Flash-Caching',
+        'Flask-Genshi',# currently needs to be a branch
+                       # eg https://github.com/vthriller/flask-genshi
+        'Genshi==0.8', # could we have a release please Edgewall?
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.5',
+    # 3.7 needed for module-level __getattr__ in helpers.py
+    python_requires='>=3.7',
 )

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title></title>
+</head>
+
+<body>
+	
+    <h2>Welcome</h2>
+
+    <p>Hi! I'm Kathy Murdoch. Most people come here for the <a href="${tg.url('/recipes/chocolate-tiffin')}">tiffin recipe</a>. I can't blame them.</p>
+
+    <div class="left-large">
+        <h3><a href="http://iguana.dreamwidth.org/">Journal</a> Entries</h3>
+        
+        <p style="font-size: 80%;">Best viewed from the blog itself, since the RSS feed strips out style markup.</p>
+
+        <ul class="livejournal">
+            <li py:for="entry in entries">
+                <h4>
+                    <a href="${entry.link}"
+                        >${hasattr(entry, 'title') and entry.title or 'Untitled'}
+                    </a>
+                </h4>
+                <div class="main">
+                    <p class="meta">${entry.updated}</p>
+                    <p>${Markup(entry.summary)}</p>
+                    <br style="clear: both" />
+                    <p><a href="${entry.link}?mode=reply">Comment</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="right-small">
+        <h3><a href="https://social.nevira.net/">Pleroma</a> Feed</h3>
+        
+        <p style="font-size: 80%;">These posts are also sent to <a href="http://twitter.com/kapellosaur">Twitter</a>.</p>
+
+        <ul class="identica">
+            <li py:for="status in statuses">
+                <div class="main">
+                    <p class="identica">${Markup(tg.tweet_markup(status.text))}</p>
+                    <p class="meta">
+                        <a href="http://identi.ca/notice/${status.id}" title="${status.created_at}"
+                            >${status.relative_created_at}</a>
+                        from ${Markup(status.source)}
+                    </p>
+                </div>
+            </li><li>Temporarily down while HOUSE MOVE OH GOD CONFIG BUH</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>
