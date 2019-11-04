@@ -1,0 +1,15 @@
+a:link {color: #0000FF; text-decoration: none;}
+a:visited {color: #0000FF; text-decoration: none;}
+a:hover {color: #FFEE00; background-color: red;}
+/* a:after {content:"[" attr(href) "]"; } */ /* Seemed like a good idea at the time */
+body {font-family: sans-serif; background: none;}
+.lastmod {font-size: x-small;}
+hr { color: #EEEEEE; }
+.sidebar { visibility: hidden; margin: 0px; padding: 0px; height: 0px; width: 0px; }
+.toplevel { width: 100%; background: none; }
+.maincontent { width: 100%; position: absolute; top: 0px; }
+.recipeheader { background-color: #202020; padding-left: 1px; color: black; font-weight: bold; font-style: italic; }
+ol { margin: 0; padding-top: 10px; padding-bottom: 10px; padding-right: 10px; }
+td { vertical-align: top; }
+ol li { padding-bottom: 1em; }
+

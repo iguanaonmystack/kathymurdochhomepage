@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_genshi import Genshi
 from flask_caching import Cache
 

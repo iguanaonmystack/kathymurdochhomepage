@@ -1,0 +1,377 @@
+body {
+    font-family: sans-serif;
+    background-color: #fffbe9;
+    padding: 0;
+    margin: 0;
+    line-height: 150%;
+}
+a:link {color: #00a000; text-decoration: none;}
+a:visited {color: #00a000; text-decoration: none;}
+a:hover {color: black;}
+ol { margin: 0; padding-top: 10px; padding-bottom: 10px; padding-right: 10px; list-style-type: decimal; }
+ol li { padding-bottom: 1em; }
+td { vertical-align: top; }
+
+p {
+    margin: 1ex 0 1ex 0;
+    padding: 0;
+}
+
+h1 {
+    position: absolute;
+    top: 15px;
+    left: 3em;
+    font-stretch: condensed;
+    color: orange;
+    text-transform: lowercase;
+    font-family: sans-serif;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+h2 {
+    font-size: 150%;
+}
+h3 {
+    font-size: 120%;
+    margin-top: 0;
+    padding-top: 1ex;
+}
+
+dl { border-bottom: 1px solid #999; }
+dt
+{
+    width: 10em;
+    padding: .5em;
+    float: left;
+    margin: 0;
+    border-top: 1px solid #999;
+    font-weight: bold;
+}
+dd
+{
+    margin-left: 11em;
+    padding: .5em;
+}
+dt + dd {
+    /* W3C: "E + F  Matches any F element immediately preceded by an element E." */
+    border-top: 1px solid #999;
+}
+
+q {
+    font-style: italic;
+    font-family: serif;
+}
+q:before, q:after {
+    content: '';
+}
+
+textarea {
+    display: block;
+    width: 100%;
+    height: 10em;
+}
+
+#pageLogin
+{
+    font-size: 10px;
+    font-family: verdana;
+    text-align: right;
+}
+
+
+#toplevel {
+    padding-top: 120px;
+    padding-left: 3em;
+    padding-right: 100px;
+    padding-bottom: 5em;
+}
+
+#header {
+    position: absolute;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-height: 100px;
+    top: 0;
+    left: 0;
+    background-color: #5A8546;
+    background-image: url('../images/background.jpg');
+}
+
+#kathymurdoch {
+    width: 100%;
+    height: 100px;
+    float: left;
+    margin: 0;
+}
+#kathymurdoch a {
+    display: block;
+    width: 100%;
+    height: 100px;
+}
+
+#headercontent {
+    top: 100px;
+    width: 100%;
+    right: 0;
+    position: absolute;
+    text-align: right;
+}
+
+#powered_by_stickers {
+    text-align: right;
+    position: absolute;
+    right: 0;
+    width: 100px;
+}
+#navigation {
+    margin-right: 100px;
+    font-size: 80%;
+    line-height: 20px;
+}
+#navigation ul {
+    float: right;
+    padding: 0; margin: 0 0 0 1ex;
+}
+#navigation li {
+    display: inline;
+    margin-left: 1em;
+}
+#navigation li:first-child {
+    margin-left: 0;
+}
+#site_nav_logo, #login_content_nav_logo {
+    width: 15px;
+    height: 15px;
+    float: right;
+}
+#site_nav_logo {
+    background-position: -180px -32px;
+}
+#login_content_nav_logo {
+    background-position: -195px -32px;
+}
+
+.content, .tabbertab {
+    border: 1px solid black;
+    background-color: white;
+    padding: 1ex;
+}
+.content p:first-child {
+    margin-top: 0;
+}
+
+.left-large {
+    float: left;
+    width: 70%;
+}
+.right-small {
+    padding-left: 71%;
+}
+
+
+.livejournal img {
+    margin: 0;
+}
+.identica, .livejournal {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.livejournal li, .identica li {
+    border: 1px solid gray;
+    background-color: white;
+    margin: 0 0 1ex 0;
+    list-style-type: none;
+}
+.identica li {
+    padding-left: 1ex;
+}
+.livejournal h4, .content h3 {
+    padding: 1ex;
+    margin: 0px;
+    color: #ffa854;
+    font-weight: bold;
+}
+.content h3 {
+    margin: -1ex -1ex 0 -1ex;
+}
+.livejournal h4 a {
+    color: #ffa854;
+}
+.livejournal h4 a:hover {
+    color: white;
+}
+.livejournal .main, .identica .main {
+    padding: 1ex;
+    background-color: white;
+}
+p.identica:first-line {
+    font-weight: bold;
+    color: #333;
+}
+.meta {
+    margin: 0 0 0 0;
+    padding: 0;
+    font-size: 80%;
+    color: gray;
+}
+.meta a {
+    color: #6CAB7D;
+}
+.meta:hover {
+    color: black;
+}
+.meta:hover a {
+    color: #00a000;
+}
+.meta:hover a:hover {
+    color: black;
+}
+
+ul.recipes {
+    padding: 0;
+    margin: 1ex;
+}
+ul.recipes li {
+    padding: 0;
+    margin: 0 1em 1em 0;
+    float: left;
+    display: block;
+    width: 200px;
+    min-height: 200px;
+    text-align: center;
+    font-weight: bold;
+    position: relative; /* To allow position: absolute on the vegetarian icon */
+}
+ul.recipes li span.recipetitle {
+    display: block;
+    min-height: 3em;
+}
+h2.recipe {
+    /*margin-top: 0px;*/
+    margin-left: 210px;
+}
+h3.recipe {
+    padding-top: 1em;
+    clear: both;
+}
+.recipeback {
+    float: left;
+}
+.recipeimage {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+.recipenotes {
+    padding-top: 1em;
+    padding-left: 210px;
+    margin-top: 0;
+    white-space: pre-line;
+}
+.recipetable {
+    background-color: white;
+    border: 1px solid black;
+    clear: both;
+}
+.recipeingredients {
+    float: left;
+    background-color: white;
+    width: 40%;
+}
+.recipemethod {
+    background-color: white;
+    margin: 0 0 0 40%;
+    border-left: 1px solid black;
+}
+.recipeheader {
+    padding: 1ex;
+    color: #ffa854;
+    font-weight: bold;
+}
+
+h2.vegetarian {
+    background-image: url('../images/recipes/vegetarian.png');
+    background-repeat: no-repeat;
+    min-height: 16px;
+    padding-left: 20px;
+    background-position: 0% 50%;
+    margin-left: 190px; /* padding-left less than h2.recipe */
+}
+img.vegetarian {
+    display: block;
+    position: absolute;
+    left: 178px;
+    top: 178px;
+}
+
+
+#powered_by_stickers img {
+    vertical-align: middle;
+    border-width: 0px;
+}
+
+.code_examples {
+    white-space: pre;
+    font-family: monospace;
+}
+
+
+
+#base_map_container {
+    width: 600px;
+    height: 550px;
+    background: url('../images/L/base.png');
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    border: 1px solid black;
+}
+#map_layer_container {
+    width: 580px;
+    height: 530px;
+    padding: 20px 0 0 20px;
+}
+
+#map_layers {
+    list-style-type: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#map_layers li {
+    background-color: white;
+    border: 1px dotted black;
+    width: 2em;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.nsm-xpost {
+    font-size: smaller;
+    font-style: italic;
+}
+
+.has-title {
+    border-bottom-style: dotted;
+    border-bottom-width: 1px;
+}
+
+/* The background gradient */
+.identica li, .livejournal h4, .content h3, .recipeheader {
+    background-image: linear-gradient(bottom, rgb(71,99,61) 0%, rgb(49,66,43) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(71,99,61) 0%, rgb(49,66,43) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(71,99,61) 0%, rgb(49,66,43) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(71,99,61) 0%, rgb(49,66,43) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(71,99,61) 0%, rgb(49,66,43) 100%);
+
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0, rgb(71,99,61)),
+            color-stop(1, rgb(49,66,43))
+    );
+}

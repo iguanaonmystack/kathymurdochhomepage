@@ -1,0 +1,46 @@
+#headergraphics .headerimg {
+    display: none;
+}
+
+#navigation {
+    margin-right: 0;
+}
+
+#toplevel {
+    padding-left: 1ex;
+    padding-right: 1ex;
+}
+
+.imgmap {
+    background-image: none;
+}
+
+h1 {
+    position: block;
+}
+
+#header {
+    background-image: none;
+}
+
+#powered_by_stickers {
+    display: none;
+}
+
+.recipeingredients {
+    float: none;
+    width: 100%;
+}
+
+.recipemethod {
+    margin: 0 0 0 0;
+}
+
+.recipenotes {
+    padding-left: 0;
+}
+
+h2.recipe {
+    clear: both;
+    margin-left: 20px;
+}
