@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'BlackChancery';
+    src: url('/static/fonts/BlackChancery.woff2') format('woff2'),
+        url('/static/fonts/BlackChancery.woff') format('woff'),
+        url('/static/fonts/BlackChancery.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
 body {
     font-family: sans-serif;
     background-color: #fffbe9;
@@ -20,11 +29,11 @@ p {
 h1 {
     position: absolute;
     top: 15px;
-    left: 3em;
-    font-stretch: condensed;
+    left: 50px;
     color: orange;
     text-transform: lowercase;
-    font-family: sans-serif;
+    font-family: 'BlackChancery', sans-serif;
+    font-size: 2.5em;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
 }
@@ -81,7 +90,7 @@ textarea {
 
 #toplevel {
     padding-top: 120px;
-    padding-left: 3em;
+    padding-left: 50px;
     padding-right: 100px;
     padding-bottom: 5em;
 }
@@ -95,7 +104,7 @@ textarea {
     min-height: 100px;
     top: 0;
     left: 0;
-    background-color: #5A8546;
+    background-color: #243421;
     background-image: url('../images/background.jpg');
 }
 

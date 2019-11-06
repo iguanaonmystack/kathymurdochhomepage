@@ -40,7 +40,7 @@ def index():
 def favicon():
     return send_from_directory(
         os.path.join(current_app.root_path, 'static', 'images'),
-        'favicon.ico', mimetype='image/vnd.microsoft.icon')@root.route('/favicon.ico')
+        'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @root.route('/robots.txt')
 def robots():
