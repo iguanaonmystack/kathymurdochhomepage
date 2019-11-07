@@ -12,28 +12,29 @@ log = logging.getLogger(__name__)
 
 root = Blueprint('simple_page', __name__, template_folder='templates')
 
-def dw_feed():
+def homepage_feed(url):
     lj_response = {}
     start_time = time.time()
     try:
-        lj_response['data'] = feedparser.parse(
-            'http://iguana.dreamwidth.org/data/rss').entries[:3]
+        lj_response['data'] = feedparser.parse(url).entries
     except Exception:
-        log.error('Unable to fetch DW feed: %s', traceback.format_exc())
+        log.error('Unable to fetch feed %s: %s', url, traceback.format_exc())
         lj_response['data'] = []
     lj_response['time'] = time.time() - start_time
     lj_response['checked'] = datetime.datetime.now()
-    log.debug("lj_response time is %s", lj_response['time'])
+    log.debug("time to fetch feed %s: %s", url, lj_response['time'])
     return lj_response
 
 
 @root.route('/')
 def index():
     # log.debug("Happy TurboGears Controller Responding For Duty")
-    dw_response = dw_feed()
-    statuses = []
+    dw_response = homepage_feed(
+        'https://iguana.dreamwidth.org/data/rss')['data'][:3]
+    pleroma_response = homepage_feed(
+        'https://social.nevira.net/users/iguana/feed.atom')['data'][:10]
     return render_response('welcome.html',
-        dict(statuses=statuses, entries=dw_response['data']))
+        dict(statuses=pleroma_response, entries=dw_response))
 
 
 @root.route('/favicon.ico')
