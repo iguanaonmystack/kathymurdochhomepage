@@ -19,11 +19,13 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'Flask',
-        'Flash-Caching',
-        'Flask-Genshi',# currently needs to be a branch
-                       # eg https://github.com/vthriller/flask-genshi
+        'Flask-Caching',
+        'Flask-Genshi==0.5+iguanaonmystack',
         'Genshi==0.8', # could we have a release please Edgewall?
-        # TODO - use dependency_links: https://python-packaging.readthedocs.io/en/latest/dependencies.html
+        'Bleach',
+    ],
+    dependency_links=[
+        'https://github.com/iguanaonmystack/flask-genshi/tarball/0.5+iguanaonmystack#egg=flask-genshi-0.5+iguanaonmystack'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
