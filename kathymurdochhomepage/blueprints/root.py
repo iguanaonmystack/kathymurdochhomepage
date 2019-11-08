@@ -52,3 +52,9 @@ def robots():
         os.path.join(current_app.root_path, 'static'),
         'robots.txt', mimetype='text/plain')
 
+@root.route('/about')
+def about():
+    age = (datetime.date.today() - datetime.date(1984, 12, 28)).days / 365.24
+    # (CLOSE ENOUGH SHUT UP)
+    return render_response('about.html', dict(age=int(age)))
+

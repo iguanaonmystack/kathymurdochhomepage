@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>About Me</title>
+</head>
+
+<body>
+	
+    <h2>About me</h2>
+
+    <p>I'm Kathy, and I'm definitely not standing behind you <span class="has-title" title="Made you look"><em>right now</em></span>.</p>
+    
+    <div class="content">
+        <h3>About me</h3>
+
+        <p>Oh gosh, don't make me write about myself, I'm terrible at that. Who even put this link in the navigation?</p>
+
+        <p>My interests include travelling, playing escape rooms (I have a <a href="https://withoutapadlock.wordpress.com/">reviews blog for that</a>), writing this website apparently, plus reading and cooking and the like. I'm probably ${age}.</p>
+
+        <p>I'm a keen Python developer, and I have written a bunch of things that can be found on my <a href="https://github.com/iguanaonmystack/">GitHub</a> account. Sometimes I also speak at conferences; for example, I've done a lightning talk about <a href="https://nanogenmo.github.io/">NaNoGenMo</a> and a full talk at PyCon UK on <a href="https://cython.org/">Cython</a>. I'll also happily write C if the need arises (I used to be paid to do so, even), for instance when submitting patches to <a href="https://www.bitlbee.org/">BitlBee</a>.</p>
+
+        <p>Other miscellaneous facts about me include that: I live in Nottingham (UK); I run <a href="https://twitter.com/mps_edits">@mps_edits</a> on Twitter if for some reason you want to see which MPs are being edited on Wikipedia; my laptop runs <a href="http://notion.sourceforge.net/">Notion</a> on Debian Linux; and I'm a retired Star Wars and Futurama geek.</p>
+
+        <p>This site was written in Python using <a href="https://palletsprojects.com/p/flask/">Flask</a>, ported from the previous iteration which ran on Python 2 and TurboGears 1 (so that's why it looks like it was designed in the mid-2000s).</p>
+
+    </div>
+
+    <p>Here's how to <a href="${tg.url('/contact')}">contact me</a>.</p>
+
+</body>
+</html>
