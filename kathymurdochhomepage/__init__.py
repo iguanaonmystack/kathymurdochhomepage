@@ -1,9 +1,9 @@
-from flask import Flask, url_for
+from flask import Flask
 from flask_genshi import Genshi
-from flask_caching import Cache
 
 from kathymurdochhomepage.blueprints.root import root
 from kathymurdochhomepage.lib import helpers
+from kathymurdochhomepage.lib.extensions import cache, genshi
 
 config = {
     # Flask specific configs:
@@ -19,8 +19,8 @@ config = {
 
 app = Flask(__name__)
 app.config.from_mapping(config)
-genshi = Genshi(app)
-cache = Cache(app)
+genshi.init_app(app)
+cache.init_app(app)
 
 app.register_blueprint(root)
 

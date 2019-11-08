@@ -8,10 +8,13 @@ import feedparser
 from flask import Blueprint, send_from_directory, current_app
 from flask_genshi import render_response
 
+from ..lib.extensions import cache
+
 log = logging.getLogger(__name__)
 
 root = Blueprint('simple_page', __name__, template_folder='templates')
 
+@cache.memoize()
 def homepage_feed(url):
     lj_response = {}
     start_time = time.time()
