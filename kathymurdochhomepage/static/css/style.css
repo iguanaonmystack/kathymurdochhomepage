@@ -215,6 +215,10 @@ textarea {
 .livejournal .main, .identica .main {
     padding: 1ex;
     background-color: white;
+    overflow: hidden;
+}
+.livejournal div {
+    max-width: 100%;
 }
 p.identica:first-line {
     font-weight: bold;
