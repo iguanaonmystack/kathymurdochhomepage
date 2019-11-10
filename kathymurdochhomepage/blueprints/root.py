@@ -5,14 +5,16 @@ import datetime
 import traceback
 import feedparser
 
-from flask import Blueprint, send_from_directory, current_app
+import magic
+from flask import Blueprint, send_from_directory, current_app, abort
+from flask import send_file
 from flask_genshi import render_response
 
 from ..lib.extensions import cache
 
 log = logging.getLogger(__name__)
 
-root = Blueprint('simple_page', __name__, template_folder='templates')
+root = Blueprint('root', __name__, template_folder='templates')
 
 @cache.memoize()
 def homepage_feed(url):
@@ -51,6 +53,24 @@ def robots():
     return send_from_directory(
         os.path.join(current_app.root_path, 'static'),
         'robots.txt', mimetype='text/plain')
+
+@root.route('/content/<path:path>')
+def content(path):
+    if '..' in path:
+        logging.info('Ignoring path with ..: %s', path)
+        abort(404)
+    localpath = os.path.normpath(path)
+    if localpath.startswith('..'):
+        logging.info('Ignoring normalised path with ..: %s', localpath)
+        abort(404)
+    localpath = os.path.join(current_app.config['STORAGE.DIR'], localpath)
+    if not os.path.isfile(localpath):
+        logging.info('Local file does not exist: %s', localpath)
+        abort(404)
+    mime = magic.Magic(mime=True)
+    mimetype = mime.from_file(localpath)
+    return send_from_directory(
+        current_app.config['STORAGE.DIR'], path, mimetype=mimetype)
 
 @root.route('/about')
 def about():

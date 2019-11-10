@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>Recipes</title>
+    <script type="text/javascript">
+        var _window_onload = window.onload;
+        window.onload = function() {
+            if (_window_onload)
+                _window_onload();
+            document.getElementById('veg_input').onclick = function() {
+                document.getElementById('veg_form').submit();
+            };
+            document.getElementById('veg_submit').parentNode.removeChild(document.getElementById('veg_submit'));
+        };
+    </script>
+</head>
+
+<body>
+
+<h2>Recipes</h2>
+
+<p>
+    I like good quality food, but I'm not too keen on fiddly recipes that take hours to make one serving. Most of the recipes here are reasonably straightforward.
+</p>
+<p>
+    This is a collection of recipes I've come across that I've enjoyed enough to want to keep hold of. I've put them up here in case anyone else finds them useful!
+</p>
+<form action="${tg.url('/recipes/')}" method="get" id="veg_form">
+    <p>
+        <input type="checkbox" id="veg_input" name="vegetarian" value="yes" checked="${tg.checker(vegetarian)}" />
+        <label for="veg_input">Show only vegetarian recipes</label>
+        <input type="submit" id="veg_submit" value="Filter" />
+    </p>
+</form>
+
+<p py:if="authenticated">
+    <a href="${tg.url('/recipes/new')}">Add new recipe</a>
+</p>
+<div class="tabber">
+    <div py:strip="" py:for="title, mealset in mealsets">
+        <div class="tabbertab" py:if="mealset.count()">
+            <h3 class="recipe">${title}</h3>
+
+            <ul class="recipes">
+                <li py:for="meal in mealset">
+                    <a href="${tg.url('/recipes/%s'%meal.seo)}">
+                        <img src="${meal.image}" alt="${meal.title}" width="200" height="200" />
+                        <span class="recipetitle">${meal.title}</span>
+                        <img class="vegetarian" py:if="meal.vegetarian" src="${tg.url('/static/images/recipes/vegetarian.png')}" height="16" width="16" alt="(vegetarian)" title="Vegetarian" />
+                    </a>
+                </li>
+            </ul>
+            <br style="clear: both;" />
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

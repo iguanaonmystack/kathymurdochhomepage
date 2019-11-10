@@ -22,6 +22,11 @@ def url(path):
 def config(value, default):
     return app.config.get(value, default)
 
+def checker(value):
+    if value:
+        return 'checked'
+    return None
+
 class identity:
     anonymous = True # TODO
 

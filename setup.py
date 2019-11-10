@@ -20,12 +20,15 @@ setuptools.setup(
     install_requires=[
         'Flask',
         'Flask-Caching',
-        'Flask-Genshi==0.5+iguanaonmystack',
+        'Flask-Genshi==0.5.1',
         'Genshi==0.8', # could we have a release please Edgewall?
         'Bleach',
+        'SQLObject',
+        'formencode',
+        'python-magic',
     ],
     dependency_links=[
-        'https://github.com/iguanaonmystack/flask-genshi/tarball/0.5+iguanaonmystack#egg=flask-genshi-0.5+iguanaonmystack'
+        'https://github.com/iguanaonmystack/flask-genshi/tarball/0.5+iguanaonmystack#egg=flask-genshi-0.5.1'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
