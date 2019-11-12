@@ -4,6 +4,7 @@ from flask import Blueprint, request, abort
 from flask_genshi import render_response
 
 from ..model import Recipe
+from ..lib import helpers as h
 
 log = logging.getLogger(__name__)
 
@@ -28,8 +29,8 @@ def ingredient_groups(text):
 
 @recipes.route('/')
 def index():
-    vegetarian = request.args.get('vegetarian')
-    veg = bool(vegetarian)
+    vegetarian = request.args.get('vegetarian', 'yes')
+    veg = vegetarian.lower() in h.true_strings
     starters = Recipe.by_type('starter', vegetarian=veg)
     mains = Recipe.by_type('main', vegetarian=veg)
     desserts = Recipe.by_type('dessert', vegetarian=veg)
@@ -38,11 +39,11 @@ def index():
     breads = Recipe.by_type('bread', vegetarian=veg)
     mealsets = (
         ('Starters', starters),
-        ('Main courses', mains),
+        ('Mains', mains),
         ('Desserts', desserts),
         ('Breads', breads),
         ('Snacks', snacks),
-        ('Beverages', drinks),
+        ('Drinks', drinks),
     )
     authenticated = False
     # TODO - authentication
@@ -51,7 +52,7 @@ def index():
     return render_response('recipes.html', dict(
         mealsets = mealsets,
         authenticated = authenticated,
-        vegetarian = vegetarian,
+        vegetarian = veg,
     ))
 
 @recipes.route('/<recipe_seo>')

@@ -18,6 +18,8 @@
             document.getElementById('veg_submit').parentNode.removeChild(document.getElementById('veg_submit'));
         };
     </script>
+    <script type="text/javascript" src="${tg.url('/static/javascript/tabber.js')}"></script>
+    <link rel="stylesheet" type="text/css" href="${tg.url('/static/css/tabber.css')}" />
 </head>
 
 <body>
@@ -25,15 +27,12 @@
 <h2>Recipes</h2>
 
 <p>
-    I like good quality food, but I'm not too keen on fiddly recipes that take hours to make one serving. Most of the recipes here are reasonably straightforward.
-</p>
-<p>
     This is a collection of recipes I've come across that I've enjoyed enough to want to keep hold of. I've put them up here in case anyone else finds them useful!
 </p>
 <form action="${tg.url('/recipes/')}" method="get" id="veg_form">
     <p>
-        <input type="checkbox" id="veg_input" name="vegetarian" value="yes" checked="${tg.checker(vegetarian)}" />
-        <label for="veg_input">Show only vegetarian recipes</label>
+        <input type="checkbox" id="veg_input" name="vegetarian" value="no" checked="${tg.checker(not vegetarian)}" />
+        <label for="veg_input">Include non-vegetarian recipes</label>
         <input type="submit" id="veg_submit" value="Filter" />
     </p>
 </form>
@@ -51,7 +50,7 @@
                     <a href="${tg.url('/recipes/%s'%meal.seo)}">
                         <img src="${meal.image}" alt="${meal.title}" width="200" height="200" />
                         <span class="recipetitle">${meal.title}</span>
-                        <img class="vegetarian" py:if="meal.vegetarian" src="${tg.url('/static/images/recipes/vegetarian.png')}" height="16" width="16" alt="(vegetarian)" title="Vegetarian" />
+                        <img class="vegetarian" py:if="(not vegetarian) and meal.vegetarian" src="${tg.url('/static/images/recipes/vegetarian.png')}" height="16" width="16" alt="(vegetarian)" title="Vegetarian" />
                     </a>
                 </li>
             </ul>

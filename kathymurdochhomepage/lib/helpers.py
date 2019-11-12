@@ -10,6 +10,9 @@ def __getattr__(attr):
     else:
         raise AttributeError(attr)
 
+
+true_strings = ('yes', '1', 'on', 'true')
+
 def tweet_markup(text):
     """Escape markup, parse URIs into links."""
     text = bleach.linkify(bleach.clean(text, strip=True))
