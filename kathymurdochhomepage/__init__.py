@@ -1,12 +1,42 @@
 import os
+import logging
+import logging.config
 
 from flask import Flask
 
 from kathymurdochhomepage.blueprints.root import root
 from kathymurdochhomepage.blueprints.recipes import recipes
+from kathymurdochhomepage.blueprints.error import error
 from kathymurdochhomepage.lib import helpers
 from kathymurdochhomepage.lib.extensions import cache, genshi
 from kathymurdochhomepage.lib import model_setup
+
+logging.config.dictConfig({
+    "version": 1,
+
+    # avoid turning off the logs imported from elsewhere:
+    "disable_existing_loggers": False,
+
+    "formatters": {
+        "default": {
+            "format": "[%(asctime)s] %(levelname)s %(module)s: %(message)s"
+        }
+    },
+    "handlers": {
+        "wsgi": {
+            "class": "logging.StreamHandler",
+            "stream": "ext://flask.logging.wsgi_errors_stream",
+            "formatter": "default",
+        }
+    },
+    "loggers": {
+        "": {
+            "level": "DEBUG",
+            "handlers": ["wsgi"],
+        },
+    }
+})
+log = logging.getLogger(__name__)
 
 config = {
     # Flask specific configs:
@@ -32,6 +62,7 @@ model_setup.setup(app.config['SQLOBJECT.DBURI'])
 
 app.register_blueprint(root)
 app.register_blueprint(recipes, url_prefix='/recipes')
+app.register_error_handler(Exception, error)
 
 @app.context_processor
 def inject_helpers():
