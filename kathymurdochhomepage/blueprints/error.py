@@ -1,7 +1,18 @@
 import logging
 
+from flask_genshi import render_response
+from werkzeug.exceptions import HTTPException
+
 log = logging.getLogger(__name__)
 
 def error(e):
-    log.debug(repr(e) + str(type(e)))
-    return "oh"
+    code = 500
+    title = "Internal server error"
+    if isinstance(e, HTTPException):
+        code = e.code
+        title = e.description
+    return render_response('error.html', dict(
+        title = title,
+        status = e.code),
+    ), code
+
