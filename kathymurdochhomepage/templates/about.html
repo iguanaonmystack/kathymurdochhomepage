@@ -1,8 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:py="http://genshi.edgewall.org/"
-      xmlns:xi="http://www.w3.org/2001/XInclude">
-<xi:include href="master.html" />
+      xmlns:xi="http://www.w3.org/2001/XInclude"> <xi:include href="master.html" />
 
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
@@ -11,8 +10,6 @@
 
 <body>
 	
-    <h2>About me</h2>
-
     <p>I'm Kathy, and I'm definitely not standing behind you <span class="has-title" title="Made you look"><em>right now</em></span>.</p>
     
     <div class="content">
@@ -30,7 +27,15 @@
 
     </div>
 
-    <p>Here's how to <a href="${tg.url('/contact')}">contact me</a>.</p>
+    <br />
+
+    <div class="content">
+        <h3>Contact details</h3>
+        <p>
+            I can be reached by e-mail at &lt;my first name&gt;&lt;at&gt;nivan.net. Beware my spam filters! Please send me messages in plain text (not HTML) if at all possible, since I use <a href="http://www.mutt.org/">Mutt</a>.
+        </p>
+    </div>
+
 
 </body>
 </html>

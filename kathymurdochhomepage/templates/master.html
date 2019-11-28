@@ -55,12 +55,6 @@
                         <li><a href="${tg.url('/recipes/')}">Recipes</a></li>
                         <li><a href="https://github.com/iguanaonmystack/">Github</a></li>
                         <li><a href="${tg.url('/L')}">L</a></li>
-                    </ul>
-                    <div id="site_nav_logo" class="imgmap"></div>
-                    <br />
-                    <ul id="login_content_nav">
-                        <li><a href="${tg.url('/contact')}">Contact Details</a></li>
-                        <li><a href="${tg.url('/away')}">IRC /away status</a></li>
                         <li py:if="not 'logging_in' in locals()">
                             <span py:if="tg.identity.anonymous">
                                 <a href="${tg.url('/login')}">Log in</a>

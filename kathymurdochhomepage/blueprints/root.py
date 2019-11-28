@@ -85,4 +85,7 @@ def l():
 def L():
     return render_response('L.html', dict())
 
+@root.route('/contact')
+def contact():
+    return redirect('/about')
 
