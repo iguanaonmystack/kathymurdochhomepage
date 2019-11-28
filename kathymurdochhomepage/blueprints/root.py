@@ -6,8 +6,7 @@ import traceback
 import feedparser
 
 import magic
-from flask import Blueprint, send_from_directory, current_app, abort
-from flask import send_file
+from flask import Blueprint, send_from_directory, current_app, abort, redirect
 from flask_genshi import render_response
 
 from ..lib.extensions import cache
@@ -77,4 +76,13 @@ def about():
     age = (datetime.date.today() - datetime.date(1984, 12, 28)).days / 365.24
     # (CLOSE ENOUGH SHUT UP)
     return render_response('about.html', dict(age=int(age)))
+
+@root.route('/l')
+def l():
+    return redirect('/L')
+
+@root.route('/L')
+def L():
+    return render_response('L.html', dict())
+
 

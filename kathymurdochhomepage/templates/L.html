@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>L: A Mathemagical Adventure</title>
+    <style type="text/css">
+        h2 {
+            margin: 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+        /* Switch map to show a particular layer/level number */
+        layer = function(num) {
+            return function() {
+                var map_div = document.getElementById('map_layer_container');
+                var title_div = document.getElementById('map_title');
+                
+                map_div.style.backgroundImage = "url('" + map_div.attributes['base_url'].nodeValue + "level" + parseInt(num) + ".png')";
+                title_div.innerHTML = ("Floor " + num);
+            }
+        }
+    
+        window.onload = function() {
+            layer('0');
+            
+            var layers_ul = document.getElementById('map_layers');
+            for (var i = 0; ; i++) {
+                var child = layers_ul.childNodes[i];
+                if (!child) break;
+                if (child.nodeName == 'LI') {
+                    for (var j = 0; ; j++) {
+                        var node = child.childNodes[j];
+                        if (!node) break;
+                        if (node.nodeName == '#text') {
+                            var levelnum = node.nodeValue;
+                            child.onmouseover = layer(levelnum);
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+<h2>L - A Mathemagical Adventure</h2>
+<p>
+    Also known as <cite>L - A Mathematical Adventure</cite>
+</p>
+<div id="base_map_container">
+	<div id="map_layer_container" base_url="${tg.url('/static/images/L/')}">
+		<h2 id="map_title">Base</h2>
+		<ul id="map_layers">
+			<li>4</li>
+			<li>3</li>
+			<li>2</li>
+			<li>1</li>
+			<li>0</li>
+			<li>-1</li>
+			<li>-2</li>
+		</ul>
+	</div>
+</div>
+
+<div class="content">
+    <p>
+        <cite>L - A Mathemagical Adventure</cite> is a BBC Micro game which I played at school when I was 10 or 11 years old. It's a text based adventure with mathematical problems to solve along the way. It's as old as me (published 1984)! In Year 6 of school, two of my friends and I were allowed to play on it weekly, and although we got reasonably far with it, we hadn't completed it within the year, and left for another school.
+    </p>
+    <p>
+        When a friend the next year showed me how to program text-based applications with simple commands in BASIC, I spent most of that year - and consecutive years - attempting to reproduce what I'd remembered of <cite>L</cite>. It literally started my programming career.
+    </p>
+    <p>
+    Twelve years later, and some random Wikipedia browsing turned up a reference to <cite>L</cite>, along with its full name, which I hadn't previously known. Googling for a single letter hasn't been useful in the past, so this new information allowed me to find a <a href="http://www.bbcmicrogames.com/bestrest.html">ROM</a> for it along with a BBC Micro emulator, <a href="http://beebem-unix.bbcmicro.com/">BeebEm</a>.<a href="#asterisk" name="asterisk_origin">*</a>
+    </p>
+    <p>
+    So, I played it! I'm pleased to say that my brain power increased in those twelve years, and I was able to solve the Skeleton Key puzzle that I'd not managed in Year 6, as well as getting to the courtyard with the shady figure in it (months of trying various ways to break the window proved fruitless!) I finished the game, and discovered that although there's a <a href="http://www.gamesover.com/walkthroughs/L.txt">walkthrough</a> available online, I couldn't find a map of the palace anywhere. So here's my attempt at making one.
+    </p>
+    <p>
+    With each room represented by one equally sized square, the map fitted together reasonably well. I've never shifted between levels when there was no "UP" or "DOWN" direction between two tiles, and if DOWN and EAST both led to the same tile, I'd drop a level and play around to see whether or not shifting the connected tiles East fitted together or not. A handy reference was the South-West corner of the walled garden, which at worst is West of the garden if you want the garden to be directly below the Balcony.
+    </p>
+    <p>
+    The hidden passages under the swimming pool required a bit of guesswork, but I think I've represented them reasonably. Sometimes I've had no choice but to assume a flight of stairs takes me up two levels instead of one in order for rooms to not overlap. When this is the case I've labelled the staircase on the intermediate level but without any room enclosure lines.
+    </p>
+    <p>
+    An interesting product of the map shows that outside the palace actually happens on two levels. This doesn't seem particularly unreasonable, but if we really wanted to avoid an implied slope towards the river, we could guess that the walled garden is actually sunken into the ground (hence the walls?).
+    </p>
+    <p>
+    I found out a couple of years ago that <cite>L</cite> has been re-released as a Windows game. I haven't played it, but the new version of the game is available from <a href="http://www.atm.org.uk/shop/products/sof073.html">ATM.org.uk</a>. If you are a teacher or parent, I highly recommend introducing your students or children to it. I had great fun in Year 6 with my friends trying to figure out the skeleton key puzzle, playing the piano, and coming up with a 3D map made of snap-together plastic cubes.
+    </p>
+    <p>
+    If you wish to contact me about this page, e-mail my first name at this domain, or leave a comment below.
+    </p>
+    <p><strong>External resources:</strong></p>
+    <ul>
+        <li><a href="http://www.atm.org.uk/shop/products/sof073.html">Buy the Windows port of L from ATM.org.uk</a></li>
+        <li><a href="http://www.gamesover.com/walkthroughs/L.txt">L walkthrough</a></li>
+        <li><a href="http://solutionarchive.com/game/id%2C5360/L+-+A+Mathemagical+Adventure.html">L on the Classic Adventures Solution Archive</a></li>
+        <li><a href="http://www.youtube.com/playlist?list=PLy5HwFxc67UFERGEqbKU-Ky74QwEtuLsm">Video walkthrough</a></li>
+    </ul>
+    <p style="font-size: small;">
+    <a href="#asterisk_origin" name="asterisk">*</a> To load L in BeebEm, go to the menu (F12) -&gt; System and choose "BBC Master 128". Then go to Discs and load the l.ssd which you unzipped from the package from <a href="http://www.bbcmicrogames.com/bestrest.html">here</a> by selecting "Select, load and run a disc". L will run, and warn you that the disc is "Read Only". Go back to the Discs menu, and untick the checkbox "Disk 0: Read only". Then type <tt>CHAIN "L.L"</tt> to restart L. Enjoy the game!<br />
+    Thanks to Dave Eggleston for his help with setting up BeebEm
+    </p>
+</div>
+
+<br style="clear: both;" />
+<div class="content comments">
+    <h3>Comments</h3>
+    <p>I'd love to hear about other people's experience playing L, both the original and the newer Windows release. Add your comments here.</p>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'nickmurdoch'; // required: replace example with your forum shortname
+        var disqus_identifier = 'L';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+</div>
+
+</body>
+</html>
