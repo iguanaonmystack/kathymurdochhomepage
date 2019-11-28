@@ -40,7 +40,7 @@ log = logging.getLogger(__name__)
 
 config = {
     # Flask specific configs:
-    'DEBUG': True,
+    'DEBUG': False,
 
     # Flask-Caching related configs:
     'CACHE_TYPE': 'filesystem',
@@ -48,17 +48,14 @@ config = {
     'CACHE_DIR': 'flask-cache',
     'CACHE_THRESHOLD': 50,
     'CACHE_OPTIONS': {'mode': 0o600},
-
-    # Model:
-    'SQLOBJECT.DBURI': 'sqlite:knm.sqlite',
-    'STORAGE.DIR': os.path.join(os.path.abspath(os.curdir), 'storage'),
 }
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 app.config.from_mapping(config)
+app.config.from_pyfile('config.py') # put in instance/
 genshi.init_app(app)
 cache.init_app(app)
-model_setup.setup(app.config['SQLOBJECT.DBURI'])
+model_setup.setup(app.config['SQLOBJECT_DBURI'])
 
 app.register_blueprint(root)
 app.register_blueprint(recipes, url_prefix='/recipes')

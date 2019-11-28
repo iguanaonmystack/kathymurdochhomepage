@@ -62,14 +62,14 @@ def content(path):
     if localpath.startswith('..'):
         logging.info('Ignoring normalised path with ..: %s', localpath)
         abort(404)
-    localpath = os.path.join(current_app.config['STORAGE.DIR'], localpath)
+    localpath = os.path.join(current_app.config['STORAGE_DIR'], localpath)
     if not os.path.isfile(localpath):
         logging.info('Local file does not exist: %s', localpath)
         abort(404)
     mime = magic.Magic(mime=True)
     mimetype = mime.from_file(localpath)
     return send_from_directory(
-        current_app.config['STORAGE.DIR'], path, mimetype=mimetype)
+        current_app.config['STORAGE_DIR'], path, mimetype=mimetype)
 
 @root.route('/about')
 def about():

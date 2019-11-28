@@ -53,7 +53,7 @@ class Recipe(SQLObject):
     def image_disk(self):
         """Return the filesystem location of the image for this recipe"""
         return os.path.join(
-            current_app.config.get('STORAGE.DIR'),
+            current_app.config.get('STORAGE_DIR'),
             'recipes',
             self.seo)
 
