@@ -1,6 +1,6 @@
 from sqlobject import connectionForURI, sqlhub
 
-from ..model import Recipe
+from ..model import Recipe, User
 
 def setup(dburi):
     connection = connectionForURI(dburi)
@@ -9,3 +9,7 @@ def setup(dburi):
     # by default, use this connection
 
     Recipe.createTable(ifNotExists=True)
+    User.createTable(ifNotExists=True)
+    
+    return connection
+

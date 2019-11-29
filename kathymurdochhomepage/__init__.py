@@ -8,7 +8,7 @@ from kathymurdochhomepage.blueprints.root import root
 from kathymurdochhomepage.blueprints.recipes import recipes
 from kathymurdochhomepage.blueprints.error import error
 from kathymurdochhomepage.lib import helpers
-from kathymurdochhomepage.lib.extensions import cache, genshi
+from kathymurdochhomepage.lib.extensions import cache, genshi, login_manager
 from kathymurdochhomepage.lib import model_setup
 
 logging.config.dictConfig({
@@ -55,6 +55,7 @@ app.config.from_mapping(config)
 app.config.from_pyfile('config.py') # put in instance/
 genshi.init_app(app)
 cache.init_app(app)
+login_manager.init_app(app)
 model_setup.setup(app.config['SQLOBJECT_DBURI'])
 
 app.register_blueprint(root)

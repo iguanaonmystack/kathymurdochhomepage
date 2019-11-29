@@ -20,6 +20,8 @@ setuptools.setup(
     install_requires=[
         'Flask',
         'Flask-Caching',
+        'Flask-Login',
+        'Flask-WTF',
         'Flask-Genshi==0.5.1',
         'Genshi==0.8', # could we have a release please Edgewall?
         'Bleach',

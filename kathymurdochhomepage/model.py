@@ -3,10 +3,14 @@ import re
 import datetime
 
 from flask import current_app
-from sqlobject import SQLObject, UnicodeCol, IntCol, StringCol, DateTimeCol
-from sqlobject import SQLObjectNotFound
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlobject import SQLObject, SQLObjectNotFound
+from sqlobject import UnicodeCol, IntCol, StringCol, DateTimeCol, BLOBCol
 
 from .lib import helpers as h
+
+# You can use the installed CLI sqlobject-admin tool to create these tables:
 
 class Recipe(SQLObject):
     title = UnicodeCol(alternateID=True)
@@ -56,4 +60,29 @@ class Recipe(SQLObject):
             current_app.config.get('STORAGE_DIR'),
             'recipes',
             self.seo)
+
+class User(SQLObject, UserMixin):
+    username = UnicodeCol(alternateID=True)
+    display_name = UnicodeCol()
+    password_hash = BLOBCol(default=b'')
+
+    @classmethod
+    def by_username(cls, username):
+        try:
+            return cls.select(cls.q.username == username).getOne()
+        except SQLObjectNotFound:
+            return None
+
+    def get_id(self):
+        '''This function is used by flask_login and actually returns the
+        username, an alternative ID, rather than the database ID of the user!
+        '''
+        return self.username
+
+    def set_password(self, password):
+        # salted hash, thank you werkzeug:
+        self.password_hash = generate_password_hash(password).encode('utf-8')
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash.decode('utf-8'), password)
 

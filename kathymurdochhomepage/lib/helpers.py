@@ -1,3 +1,4 @@
+import os
 import re
 import cgi
 
@@ -30,6 +31,6 @@ def checker(value):
         return 'checked'
     return None
 
-class identity:
-    anonymous = True # TODO
+def is_dev():
+    return os.environ.get('FLASK_DEBUG', '0') == '1'
 
