@@ -6,3 +6,5 @@ from flask_login import LoginManager
 cache = Cache()
 genshi = Genshi()
 login_manager = LoginManager()
+login_manager.session_protection = "strong"
+

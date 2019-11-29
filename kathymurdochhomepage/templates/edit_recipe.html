@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>Recipes - Edit ${form.title.data}</title>
+</head>
+
+<body>
+
+<form method="post" enctype="multipart/form-data">
+    
+    <h2 class="recipe">Title: ${form.title}</h2>
+    <img py:if="image" src="${image}" />
+    Image: ${form.image}
+    <p>Preparation: ${form.preptime} minutes</p>
+    <p>Cooking: ${form.cooktime} minutes</p>
+    <p>Servings: ${form.serves}</p>
+    <p>
+        Source: ${form.source}<br /> 
+        URL: ${form.sourceurl}<br />
+    </p>
+    <p>Notes: ${form.notes}</p>
+
+    <p>Type: <select name="type">${form.type}</select></p>
+
+    <p>${form.vegetarian} ${form.vegetarian.label}</p>
+
+    <div class="recipetable">
+        <div class="recipeingredients">
+            <div class="recipeheader">
+                Ingredients
+            </div>
+            ${form.ingredients}
+        </div>
+        <div class="recipemethod">
+            <div class="recipeheader">
+                Method
+            </div>
+            ${form.method}
+        </div>
+    </div>
+    
+    ${form.hidden_tag()}
+    ${form.submit()}
+    <p py:if="id">
+        <a href="${tg.url('/recipes/delete')}id=${id}" onclick="return confirm('Sure?');">Delete</a>
+    </p>
+    
+</form>
+
+</body>
+</html>

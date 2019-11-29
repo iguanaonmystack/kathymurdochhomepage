@@ -31,6 +31,11 @@ def checker(value):
         return 'checked'
     return None
 
+def selector(value):
+    if value:
+        return 'selected'
+    return None
+
 def is_dev():
     return os.environ.get('FLASK_DEBUG', '0') == '1'
 

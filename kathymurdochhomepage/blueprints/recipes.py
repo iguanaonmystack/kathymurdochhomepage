@@ -1,10 +1,13 @@
 import logging
 
-from flask import Blueprint, request, abort
+from flask import Blueprint, request, abort, redirect, flash, url_for
 from flask_genshi import render_response
+from flask_login import current_user, login_required
+from werkzeug.utils import secure_filename
 
 from ..model import Recipe
 from ..lib import helpers as h
+from ..lib.recipes import RecipeForm
 
 log = logging.getLogger(__name__)
 
@@ -75,8 +78,48 @@ def recipe(recipe_seo):
         ingredients = ingredient_groups(recipe.ingredients),
         method = ingredient_groups(recipe.method),
         vegetarian = recipe.vegetarian,
-        editable = False, # TODO - authentication
+        editable = current_user.is_active,
         id = recipe.id,
     ))
 
+@recipes.route('/edit', methods=('GET', 'POST'))
+@login_required
+def edit():
+    r = Recipe.get(request.values['id'])
+    form = RecipeForm(obj=r)
+    if form.validate_on_submit():
+        r.set(
+            title = form.title.data,
+            notes = form.notes.data,
+            preptime = int(form.preptime.data or 0),
+            cooktime = int(form.cooktime.data or 0),
+            source = form.source.data,
+            sourceurl = form.sourceurl.data,
+            serves = int(form.serves.data or 0),
+            ingredients = form.ingredients.data,
+            method = form.method.data,
+            type = form.type.data,
+            vegetarian = int(form.vegetarian.data))
+        if form.image.data:
+            form.image.data.save(r.image_disk)
+        flash('Saved!')
+        return redirect(url_for('.recipe', recipe_seo=r.seo))
+    
+    return render_response('edit_recipe.html', dict(
+        id = r.id,
+        form = form,
+        image = r.image,
+        # title = r.title,
+        # notes = r.notes,
+        # preptime = r.preptime,
+        # cooktime = r.cooktime,
+        # source = r.source,
+        # sourceurl = r.sourceurl,
+        # serves = r.serves,
+        # ingredients = r.ingredients,
+        # method = r.method,
+        # type = r.type,
+        # vegetarian = r.vegetarian,
+        # mealtypes = form.type.choices,
+    ))
 

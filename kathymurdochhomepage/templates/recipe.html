@@ -16,7 +16,7 @@
 <div class="recipedesc">
     <img src="${tg.url(image)}" alt="Image of ${title}" class="recipeimage" width="200" height="200" />
     <p py:if="editable">
-        <a href="${tg.url('edit', id=id)}">Edit</a>
+        <a href="${url_for('.edit')}?id=${id}">Edit</a>
     </p>
     <p py:if="prephours or prepmins">
         Preparation time:
