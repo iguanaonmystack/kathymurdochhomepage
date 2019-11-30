@@ -16,7 +16,7 @@
 }
 
 h1 {
-    position: block;
+    display: none;
 }
 
 #header {
@@ -38,6 +38,10 @@ h1 {
 
 .recipenotes {
     padding-left: 0;
+}
+
+.recipeimage {
+    float: left;
 }
 
 h2.recipe {
