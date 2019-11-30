@@ -34,12 +34,12 @@
         <input type="checkbox" id="veg_input" name="vegetarian" value="no" checked="${tg.checker(not vegetarian)}" />
         <label for="veg_input">Include non-vegetarian recipes</label>
         <input type="submit" id="veg_submit" value="Filter" />
+        <span py:if="current_user.is_active" style="margin-left: 4em;">
+            <a href="${tg.url('/recipes/new')}">Add new recipe</a>
+        </span>
     </p>
 </form>
 
-<p py:if="authenticated">
-    <a href="${tg.url('/recipes/new')}">Add new recipe</a>
-</p>
 <div class="tabber">
     <div py:strip="" py:for="title, mealset in mealsets">
         <div class="tabbertab" py:if="mealset.count()">

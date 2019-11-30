@@ -4,7 +4,7 @@ from wtforms import TextAreaField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 
 class RecipeForm(FlaskForm):
-    title = StringField('Title')
+    title = StringField('Title', validators=[DataRequired()])
     image = FileField('Image')
     preptime = IntegerField('Preparation')
     cooktime = IntegerField('Cooking')
@@ -23,3 +23,4 @@ class RecipeForm(FlaskForm):
     ingredients = TextAreaField('Ingredients')
     method = TextAreaField('Method')
     submit = SubmitField('Submit')
+

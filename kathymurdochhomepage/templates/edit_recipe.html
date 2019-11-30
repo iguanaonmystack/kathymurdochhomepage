@@ -47,7 +47,7 @@
     ${form.hidden_tag()}
     ${form.submit()}
     <p py:if="id">
-        <a href="${tg.url('/recipes/delete')}id=${id}" onclick="return confirm('Sure?');">Delete</a>
+        <a href="${tg.url('/recipes/delete')}?id=${id}" onclick="return confirm('Sure?');">Delete</a>
     </p>
     
 </form>

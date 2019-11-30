@@ -60,7 +60,7 @@
                                 <a href="${tg.url('/login')}">Log in</a>
                             </span>
                             <span py:if="not current_user.is_anonymous">
-                                Welcome ${current_user.display_name}.
+                                Hi ${current_user.display_name}!
                                 <a href="${tg.url('/logout')}">Logout</a>
                             </span>
                         </li>
