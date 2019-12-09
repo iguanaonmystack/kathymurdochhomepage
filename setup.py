@@ -28,6 +28,7 @@ setuptools.setup(
         'SQLObject',
         'formencode',
         'python-magic',
+        'feedparser',
     ],
     dependency_links=[
         'https://github.com/iguanaonmystack/flask-genshi/tarball/0.5+iguanaonmystack#egg=flask-genshi-0.5.1'
