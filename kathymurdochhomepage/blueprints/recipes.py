@@ -21,13 +21,16 @@ def ingredient_groups(text):
     for line in text.split('\n'):
         line = line.strip()
         if line.endswith(':'):
+            group = IngredientGroup()
+            groups.append(group)
             group.title = line
         elif line:
             group.append(line)
         else:
+            # blank line = new untitled set of ingredients
             group = IngredientGroup()
             groups.append(group)
-    return groups
+    return filter(None, groups)
 
 @recipes.route('/')
 def index():
