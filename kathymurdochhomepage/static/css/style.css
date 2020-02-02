@@ -290,12 +290,13 @@ h3.recipe {
 .recipetable {
     background-color: white;
     border: 1px solid black;
-    clear: both;
+    overflow: auto;
 }
 .recipeingredients {
     float: left;
     background-color: white;
     width: 40%;
+    border-right: 1px solid black;
 }
 .recipemethod {
     background-color: white;
