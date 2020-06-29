@@ -38,6 +38,11 @@
     <p py:if="serves">
         Serves: $serves
     </p>
+    <p py:if="serves">
+        <form method="GET" action="${tg.url()}">
+        Scale to <input type="text" name="servings" value="${tg.params().get('servings', serves)}" /> servings <input type="submit" />
+        </form>
+    </p>
     <p>
         Source: <a href="${sourceurl}" py:strip="not sourceurl">$source</a>
     </p>
@@ -52,8 +57,10 @@
         </div>
         <py:for each="group in ingredients">
         <ul>
-    	<p py:if="group.title">${group.title}</p>
-            <li py:for="ingredient in group">${ingredient}</li>
+            <p py:if="group.title">${group.title}</p>
+            <li py:for="ingredient in group">
+                <acronym py:strip="ingredient.scale == 1" title="Scaled from ${ingredient.original_amount}">${ingredient.amount}</acronym> ${ingredient.text}
+            </li>
         </ul>
         </py:for>
     </div>
@@ -61,8 +68,9 @@
         <div class="recipeheader">
             Method
         </div>
+        <p py:if="scale != 1">(Note: Method is not scaled with ingredients. References to quantities and cooking times need to be adjusted)</p>
         <py:for each="group in method">
-    	<p py:if="group.title">${group.title}</p>
+        <p py:if="group.title">${group.title}</p>
         <ol>
             <li py:for="line in group">${line}</li>
         </ol>

@@ -1,4 +1,5 @@
 import logging
+import unicodedata
 
 from flask import Blueprint, request, abort, redirect, flash, url_for
 from flask_genshi import render_response
@@ -12,10 +13,65 @@ log = logging.getLogger(__name__)
 
 recipes = Blueprint('recipes', __name__, template_folder='templates')
 
+class Ingredient:
+    def __init__(self, text, scale):
+        amount, orig_amt, text = self.process(text)
+        self.scale = scale
+        if scale == 1:
+            self.amount = orig_amt
+        elif amount is None:
+            self.amount = None
+        else:
+            self.amount = round(amount * scale, 2)
+            if self.amount == int(self.amount):
+                self.amount = int(self.amount)
+        self.original_amount = orig_amt
+        self.text = text
+
+    @classmethod
+    def process(cls, text):
+        val = 0
+        integer = True
+        for i, char in enumerate(text):
+            if char.isdecimal():
+                continue
+            if i > 0 and char == '.':
+                if not integer:
+                    break
+                integer = False
+                continue
+            break
+        if i > 0:
+            val = float(text[:i])
+        # account for (probably mostly?) fractions after the number
+        if len(text) > i:
+            if text[i].isnumeric():
+                numericvalue = unicodedata.numeric(text[i])
+                val += numericvalue
+                if integer:
+                    integer = numericvalue == int(numericvalue)
+                i += 1
+        if integer:
+            val = int(val)
+        if i == 0:
+            val = None
+        return val, text[:i], text[i:].strip()
+
+    def __str__(self):
+        if self.scale == 1:
+            return '{} {}'.format(self.original_amount, self.text)
+        if self.amount:
+            return '{} {}'.format(self.amount, self.text)
+        return self.text
+
+    def __repr__(self):
+        return '<Ingredient {!r}, {!r}, {!r}, {!r}>'.format(
+            self.amount, self.original_amount, self.scale, self.text)
+
 class IngredientGroup(list):
     title = ''
 
-def ingredient_groups(text):
+def ingredient_groups(text, scale=None):
     group = IngredientGroup()
     groups = [group]
     for line in text.split('\n'):
@@ -25,7 +81,10 @@ def ingredient_groups(text):
             groups.append(group)
             group.title = line
         elif line:
-            group.append(line)
+            if scale:
+                group.append(Ingredient(line, scale))
+            else:
+                group.append(line)
         else:
             # blank line = new untitled set of ingredients
             group = IngredientGroup()
@@ -65,6 +124,10 @@ def recipe(recipe_seo):
     recipe = Recipe.by_seo(recipe_seo)
     if not recipe:
         abort(404)
+    scale_to = float(request.args.get('servings', recipe.serves))
+    scale = 1
+    if scale_to and recipe.serves:
+        scale = scale_to / recipe.serves
     return render_response('recipe.html', dict(
         title = recipe.title,
         notes = recipe.notes,
@@ -77,11 +140,12 @@ def recipe(recipe_seo):
         serves = recipe.serves,
         seo = recipe.seo,
         image = recipe.image or "/static/images/recipes/noimage.png",
-        ingredients = ingredient_groups(recipe.ingredients),
+        ingredients = ingredient_groups(recipe.ingredients, scale=scale),
         method = ingredient_groups(recipe.method),
         vegetarian = recipe.vegetarian,
         editable = current_user.is_active,
         id = recipe.id,
+        scale = scale,
     ))
 
 @recipes.route('/edit', methods=('GET', 'POST'))
